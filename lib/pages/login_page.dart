@@ -14,7 +14,7 @@ class LoginPage extends StatelessWidget {
     return BlocProvider(
       create: (context) => PasswordCubit(),
       child: Scaffold(
-        body: ListView(
+        body: Column(
           children: [
             Container(
               height: 300,

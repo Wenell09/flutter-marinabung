@@ -15,3 +15,12 @@ final class GetTransaction extends TransactionEvent {
     required this.userId,
   });
 }
+
+final class DeleteTransaction extends TransactionEvent {
+  final String savingId;
+  final String userId;
+  DeleteTransaction({
+    required this.savingId,
+    required this.userId,
+  });
+}

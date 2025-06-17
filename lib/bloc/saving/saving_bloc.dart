@@ -44,16 +44,6 @@ class SavingBloc extends Bloc<SavingEvent, SavingState> {
       }
     });
 
-    on<EditSaving>((event, emit) async {
-      emit(SavingLoading());
-      try {
-        await savingRepository.editSaving(event.data);
-        add(GetSaving(userId: event.data["user_id"]));
-      } catch (e) {
-        emit(SavingError());
-      }
-    });
-
     on<DeleteSaving>((event, emit) async {
       emit(SavingLoading());
       try {

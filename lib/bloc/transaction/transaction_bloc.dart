@@ -28,5 +28,15 @@ class TransactionBloc extends Bloc<TransactionEvent, TransactionState> {
         emit(TransactionError());
       }
     });
+
+    on<DeleteTransaction>((event, emit) async {
+      try {
+        await transactionRepository.deleteTransaction(
+            event.userId, event.savingId);
+        emit(TransactionDeleteSuccess());
+      } catch (e) {
+        emit(TransactionError());
+      }
+    });
   }
 }

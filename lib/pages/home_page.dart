@@ -93,6 +93,21 @@ class HomePage extends StatelessWidget {
                     final filteredData = state.filteredDataSaving
                         .where((element) => element.completedAt == "")
                         .toList();
+                    if (state.filteredDataSaving.isEmpty ||
+                        filteredData.isEmpty) {
+                      return SizedBox(
+                        height: MediaQuery.of(context).size.height / 2,
+                        child: Center(
+                          child: Text(
+                            "Data tabungan kosong, yuk tambah!",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w500,
+                              fontSize: 16,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
                     return ListView.builder(
                       physics: ScrollPhysics(),
                       shrinkWrap: true,

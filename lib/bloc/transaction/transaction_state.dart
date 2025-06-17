@@ -13,4 +13,6 @@ final class TransactionLoaded extends TransactionState {
 
 final class TransactionAddSuccess extends TransactionState {}
 
+final class TransactionDeleteSuccess extends TransactionState {}
+
 final class TransactionError extends TransactionState {}

@@ -69,4 +69,18 @@ class TransactionRepository {
       throw Exception(e.toString());
     }
   }
+
+  Future<void> deleteTransaction(String userId, String savingId) async {
+    try {
+      await supabase
+          .from("transaction")
+          .delete()
+          .eq("user_id", userId)
+          .eq("saving_id", savingId);
+      debugPrint("Success delete transaction");
+    } catch (e) {
+      debugPrint("Error delete transaction: $e");
+      throw Exception(e.toString());
+    }
+  }
 }

@@ -66,26 +66,6 @@ class SavingRepository {
     }
   }
 
-  Future<void> editSaving(Map<String, dynamic> data) async {
-    try {
-      await supabase
-          .from("savings")
-          .update({
-            "name": data["name"],
-            "target": data["target"],
-            "nominal": data["nominal"],
-            "remaining": data["remaining"],
-            "photo": data["photo"],
-          })
-          .eq("user_id", data["user_id"])
-          .eq("saving_id", data["saving_id"]);
-      debugPrint("Success edit saving");
-    } catch (e) {
-      debugPrint("Error edit saving: $e");
-      throw Exception(e.toString());
-    }
-  }
-
   Future<void> deleteSaving(String userId, String savingId) async {
     try {
       await supabase

@@ -12,11 +12,6 @@ final class GetSaving extends SavingEvent {
   GetSaving({required this.userId});
 }
 
-final class EditSaving extends SavingEvent {
-  final Map<String, dynamic> data;
-  EditSaving({required this.data});
-}
-
 final class DeleteSaving extends SavingEvent {
   final String userId, savingId;
   DeleteSaving({
