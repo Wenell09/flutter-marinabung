@@ -26,8 +26,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<RegisterUser>((event, emit) async {
       emit(AuthLoading());
       try {
-        await authRepository.registerUser(event.data);
-        emit(AuthSuccess());
+        final userId = await authRepository.registerUser(event.data);
+        emit(AuthSuccess(userId: userId));
       } catch (e) {
         emit(AuthError(message: e.toString().substring(11)));
       }
@@ -35,8 +35,8 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     on<LoginUser>((event, emit) async {
       emit(AuthLoading());
       try {
-        await authRepository.loginUser(event.data);
-        emit(AuthSuccess());
+        final userId = await authRepository.loginUser(event.data);
+        emit(AuthSuccess(userId: userId));
       } catch (e) {
         emit(AuthError(message: e.toString().substring(11)));
       }

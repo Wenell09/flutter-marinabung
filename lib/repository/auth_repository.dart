@@ -4,7 +4,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 class AuthRepository {
   final supabase = Supabase.instance.client;
 
-  Future<void> registerUser(Map<String, dynamic> data) async {
+  Future<String> registerUser(Map<String, dynamic> data) async {
     try {
       final response = await supabase.auth.signUp(
         email: data["email"],
@@ -14,7 +14,8 @@ class AuthRepository {
       if (response.user == null) {
         throw Exception("Error register user");
       } else {
-        debugPrint("success register user ${response.user!.email}");
+        debugPrint("success register user ${response.user!.id}");
+        return response.user!.id;
       }
     } on AuthApiException catch (e) {
       throw Exception(e.message);
@@ -23,7 +24,7 @@ class AuthRepository {
     }
   }
 
-  Future<void> loginUser(Map<String, dynamic> data) async {
+  Future<String> loginUser(Map<String, dynamic> data) async {
     try {
       final response = await supabase.auth.signInWithPassword(
         email: data["email"],
@@ -33,6 +34,7 @@ class AuthRepository {
         throw Exception("Error register user");
       } else {
         debugPrint("welcome user ${response.user!.email}");
+        return response.user!.id;
       }
     } on AuthApiException catch (e) {
       throw Exception(e.message);

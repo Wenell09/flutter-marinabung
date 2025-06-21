@@ -85,7 +85,7 @@ class ProfilePage extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(10),
                                 ),
                                 content: const Text(
-                                  "Apakah kamu ingin logout?",
+                                  "Apakah kamu ingin keluar?",
                                   textAlign: TextAlign.center,
                                   style: TextStyle(
                                     fontSize: 18,

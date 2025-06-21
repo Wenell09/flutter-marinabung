@@ -39,6 +39,8 @@ class DetailPage extends StatelessWidget {
             context
                 .read<SavingBloc>()
                 .add(DeleteSaving(userId: userId, savingId: savingId));
+            Navigator.of(context).pop();
+            Navigator.of(context).pop();
           }
         },
         child: BlocBuilder<DetailSavingBloc, DetailSavingState>(
@@ -85,8 +87,6 @@ class DetailPage extends StatelessWidget {
                                                 DeleteTransaction(
                                                     savingId: savingId,
                                                     userId: userId));
-                                            Navigator.of(context).pop();
-                                            Navigator.of(context).pop();
                                           },
                                           child: const Text("Ya"),
                                         ),

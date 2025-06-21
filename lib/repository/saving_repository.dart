@@ -27,7 +27,7 @@ class SavingRepository {
         "nominal": data["nominal"],
         "collected": 0,
         "remaining": data["target"],
-        "estimation": data["target"] / data["nominal"],
+        "estimation": (data["target"] / data["nominal"]).floor(),
         "created_at": DateTime.now().toIso8601String(),
         "photo": photoUrl,
         "estimation_day": data["estimation_day"]
@@ -68,6 +68,16 @@ class SavingRepository {
 
   Future<void> deleteSaving(String userId, String savingId) async {
     try {
+      final dataSaving = await supabase
+          .from("savings")
+          .select("*")
+          .eq("user_id", userId)
+          .eq("saving_id", savingId);
+      if (dataSaving[0]["photo"] != "") {
+        String path = dataSaving[0]["photo"].split('images//')[1];
+        debugPrint("Path image for delete:$path");
+        await supabase.storage.from('images').remove([path]);
+      }
       await supabase
           .from("savings")
           .delete()

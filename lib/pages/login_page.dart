@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_marinabung/bloc/auth/auth_bloc.dart';
+import 'package:flutter_marinabung/bloc/saving/saving_bloc.dart';
 import 'package:flutter_marinabung/cubit/password_cubit.dart';
 import 'package:flutter_marinabung/pages/home_page.dart';
 import 'package:flutter_marinabung/pages/register_page.dart';
@@ -121,6 +122,9 @@ class LoginPage extends StatelessWidget {
                           } else if (state is AuthSuccess) {
                             ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                                 content: Text("Welcome to MariNabung App")));
+                            context
+                                .read<SavingBloc>()
+                                .add(GetSaving(userId: state.userId));
                             Navigator.of(context)
                                 .pushReplacement(MaterialPageRoute(
                               builder: (context) => HomePage(),
