@@ -37,6 +37,8 @@ class SplashPage extends StatelessWidget {
                 width: 180,
                 height: 180,
                 decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("images/marinabung.jpeg")),
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
                 ),
