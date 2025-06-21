@@ -1,0 +1,21 @@
+# flutter pub run flutter_launcher_icons
+flutter_launcher_icons:
+  android: 'launcher_icon'
+  ios: true
+  remove_alpha_ios: true
+  image_path: 'images/marinabung.jpeg'
+  min_sdk_android: 21 # android min sdk min:16, default 21
+  adaptive_icon_background: '#ffffff' # You can use a color or image for the background
+  adaptive_icon_foreground: 'images/marinabung.jpeg' # For adaptive icons on Android
+  web:
+    generate: true
+    image_path: 'images/marinabung.jpeg'
+    background_color: '#hexcode'
+    theme_color: '#hexcode'
+  windows:
+    generate: true
+    image_path: 'images/marinabung.jpeg'
+    icon_size: 48 # min:48, max:256, default: 48
+  macos:
+    generate: true
+    image_path: 'images/marinabung.jpeg'

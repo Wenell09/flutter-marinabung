@@ -24,6 +24,8 @@ class LoginPage extends StatelessWidget {
                 width: 150,
                 height: 150,
                 decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("images/marinabung.jpeg")),
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
                 ),
