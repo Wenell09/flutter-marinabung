@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_marinabung/bloc/auth/auth_bloc.dart';
 import 'package:flutter_marinabung/cubit/index_bottom_cubit.dart';
+import 'package:flutter_marinabung/cubit/notif_cubit.dart';
 import 'package:flutter_marinabung/pages/completed_page.dart';
 import 'package:flutter_marinabung/pages/login_page.dart';
 import 'package:flutter_marinabung/pages/widgets/bottom_bar_widget.dart';
@@ -13,6 +14,7 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user = Supabase.instance.client.auth.currentUser;
+
     if (user == null) {
       Future.microtask(() {
         // ignore: use_build_context_synchronously
@@ -74,6 +76,7 @@ class ProfilePage extends StatelessWidget {
                           ),
                         ),
                       ),
+                      NotifSwitchTile(),
                       InkWell(
                         onTap: () {
                           showDialog(
@@ -162,6 +165,28 @@ class ProfilePage extends StatelessWidget {
           const BottomBarWidget(),
         ],
       ),
+    );
+  }
+}
+
+class NotifSwitchTile extends StatelessWidget {
+  const NotifSwitchTile({super.key});
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<NotifCubit, bool>(
+      builder: (context, notifEnabled) {
+        return SwitchListTile(
+          value: notifEnabled,
+          onChanged: (value) {
+            context.read<NotifCubit>().toggleNotification(value);
+          },
+          secondary: Icon(Icons.notifications),
+          title: Text(
+            notifEnabled ? "Notifikasi Aktif" : "Notifikasi Mati",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        );
+      },
     );
   }
 }

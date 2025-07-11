@@ -8,13 +8,16 @@ import 'package:flutter_marinabung/cubit/clear_search_cubit.dart';
 import 'package:flutter_marinabung/cubit/index_bottom_cubit.dart';
 import 'package:flutter_marinabung/bloc/photo/photo_bloc.dart';
 import 'package:flutter_marinabung/bloc/saving/saving_bloc.dart';
+import 'package:flutter_marinabung/cubit/notif_cubit.dart';
 import 'package:flutter_marinabung/cubit/select_estimation_cubit.dart';
 import 'package:flutter_marinabung/pages/splash_page.dart';
 import 'package:flutter_marinabung/repository/auth_repository.dart';
 import 'package:flutter_marinabung/repository/photo_repository.dart';
 import 'package:flutter_marinabung/repository/saving_repository.dart';
 import 'package:flutter_marinabung/repository/transaction_repository.dart';
+import 'package:flutter_marinabung/services/notification_service.dart';
 import 'package:flutter_marinabung/supabase/supabase_config.dart';
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -22,6 +25,8 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+  await AndroidAlarmManager.initialize();
+  NotificationService().init();
   await SupabaseConfig.init();
   runApp(const MyApp());
 }
@@ -51,6 +56,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => IndexBottomCubit()),
         BlocProvider(create: (context) => SelectEstimationCubit()),
         BlocProvider(create: (context) => ClearSearchCubit()),
+        BlocProvider(create: (context) => NotifCubit()..loadNotifStatus()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -60,3 +66,5 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
