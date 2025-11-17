@@ -11,22 +11,19 @@ class SplashPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Future.delayed(
-      Duration(seconds: 1),
-      () {
-        final user = Supabase.instance.client.auth.currentUser;
-        if (user != null) {
-          context.read<SavingBloc>().add(GetSaving(userId: user.id));
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => HomePage(),
-          ));
-        } else {
-          Navigator.of(context).pushReplacement(MaterialPageRoute(
-            builder: (context) => LoginPage(),
-          ));
-        }
-      },
-    );
+    Future.delayed(Duration(seconds: 1), () {
+      final user = Supabase.instance.client.auth.currentUser;
+      if (user != null) {
+        context.read<SavingBloc>().add(GetSaving(userId: user.id));
+        Navigator.of(
+          context,
+        ).pushReplacement(MaterialPageRoute(builder: (context) => HomePage()));
+      } else {
+        Navigator.of(
+          context,
+        ).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
+      }
+    });
     return Scaffold(
       body: Center(
         child: SingleChildScrollView(
@@ -38,18 +35,16 @@ class SplashPage extends StatelessWidget {
                 height: 180,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage("images/marinabung.jpeg")),
+                    image: AssetImage("images/marinabung.jpeg"),
+                  ),
                   borderRadius: BorderRadius.circular(10),
                   color: Colors.black,
                 ),
               ),
               Text(
                 "Mari Nabung",
-                style: TextStyle(
-                  fontSize: 17,
-                  fontWeight: FontWeight.bold,
-                ),
-              )
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
+              ),
             ],
           ),
         ),
