@@ -8,6 +8,7 @@ MariNabung adalah aplikasi tentang manajemen keuangan yaitu menabung.Aplikasi in
 <li>tambah tabungan</li>
 <li>tambah jumlah uang dari jangka waktu yang ingin ditabung</li>
 <li>hapus daftar tabungan</li>
+<li>Notifikasi pengingat harian</li>
 
 ## Preview MariNabung
 ![preview 1](images/1.png)
